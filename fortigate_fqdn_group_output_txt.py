@@ -1,14 +1,20 @@
-# import the csv module for reading CSV files
+# import the modules
+import argparse
 import csv
 
 # specify the input and output file names
 filename = "fqdns.csv"
-group_name = "fqdn_group" #change me
 output_file = "fgt_commands.txt"
+
+# parse the command-line arguments using argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("group_name", help="name of the address group")
+args = parser.parse_args()
 
 # read the FQDNs from the CSV file using csv.reader()
 with open(filename, 'r') as csvfile:
     csvreader = csv.reader(csvfile)
+    # extract the first column of each row (assuming that there is only one column in the CSV)
     fqdns = [row[0] for row in csvreader]
 
 # generate FortiGate CLI commands for creating FQDN address objects
