@@ -25,7 +25,7 @@ formatted_fqdns = ["edit \"" + fqdn + "\"\n" +
 
 # generate FortiGate CLI commands for creating a group and adding the FQDNs to it
 group_commands = ["config firewall addrgrp\n" +
-                  "edit \"" + group_name + "\"\n"] + \
+                  "edit \"" + args.group_name + "\"\n"] + \
                  ["\t" + "append member \"" + fqdn + "\"\n" for fqdn in fqdns] + \
                  ["next\n"]
 
