@@ -19,14 +19,14 @@ with open(filename, 'r') as csvfile:
 
 # generate FortiGate CLI commands for creating FQDN address objects
 formatted_fqdns = ["edit \"" + fqdn + "\"\n" +
-                   "\t" + "set type fqdn\n" +
-                   "\t" + "set fqdn \"" + fqdn + "\"\n" +
+                   "set type fqdn\n" +
+                   "set fqdn \"" + fqdn + "\"\n" +
                    "next\n" for fqdn in fqdns]
 
 # generate FortiGate CLI commands for creating a group and adding the FQDNs to it
 group_commands = ["config firewall addrgrp\n" +
                   "edit \"" + args.group_name + "\"\n"] + \
-                 ["\t" + "append member \"" + fqdn + "\"\n" for fqdn in fqdns] + \
+                 ["append member \"" + fqdn + "\"\n" for fqdn in fqdns] + \
                  ["next\n"]
 
 # concatenate the CLI commands into a single string
